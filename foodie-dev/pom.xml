@@ -8,7 +8,11 @@
     <artifactId>foodie-dev</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>foodie-common-dev</module>
+        <module>foodie-dev-pojo</module>
+        <module>foodie-dev-mapper</module>
+        <module>foodie-dev-service</module>
+        <module>foodie-dev-common</module>
+        <module>foodie-dev-api</module>
     </modules>
     <packaging>pom</packaging>
 
