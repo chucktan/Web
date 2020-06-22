@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="版权所有(C)，XXX公司，&amp;#36;today.format(&quot;yyyy&quot;)，所有权利保留。&#10;&#10;项目名： &amp;#36;module.name&#10;文件名： &amp;#36;file.fileName&#10;模块说明：&#10;修改历史:&#10;&amp;#36;today.format(&quot;yyyy-M-d&quot;) - xxxx - 创建。&#10;" />
+    <option name="myName" value="copyright" />
+  </copyright>
+</component>
