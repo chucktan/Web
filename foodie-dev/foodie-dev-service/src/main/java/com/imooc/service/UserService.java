@@ -1,6 +1,8 @@
 package com.imooc.service;
 
-import org.apache.catalina.User;
+
+import com.imooc.pojo.Users;
+import com.imooc.pojo.bo.UserBo;
 
 public interface UserService {
     /**
@@ -11,5 +13,5 @@ public interface UserService {
     /**
      * 创建用户
      */
-    public User createUser(UserBO userBO);
+    public Users createUser(UserBo userBO);
 }
