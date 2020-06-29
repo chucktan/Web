@@ -20,7 +20,7 @@ import java.util.Date;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UsersMapper usersMapper;
-    private  final  static  String USER_FACE = "http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_8_qAIlFXAAAcIhVPdSg994.png";
+    private final static String USER_FACE = "http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_8_qAIlFXAAAcIhVPdSg994.png";
     @Autowired
     private Sid sid;
 
@@ -29,10 +29,10 @@ public class UserServiceImpl implements UserService {
     public boolean queryUsernameIsExist(String username) {
         Example userExample = new Example(Users.class);
         Example.Criteria userCirteria = userExample.createCriteria();
-        userCirteria.andEqualTo("username",username);
+        userCirteria.andEqualTo("username", username);
 
-        Users result= usersMapper.selectOneByExample(userExample);
-        return  result == null?false:true;
+        Users result = usersMapper.selectOneByExample(userExample);
+        return result == null ? false : true;
 
     }
 
@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
         String userId = sid.nextShort();
         Users user = new Users();
         user.setId(userId);
+
         user.setUsername(userBO.getUsername());
 
         try {
@@ -63,6 +64,19 @@ public class UserServiceImpl implements UserService {
         user.setUpdatedTime(new Date());
 
         usersMapper.insert(user);
-        return  user;
+        return user;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public Users queryUserForLogin(String username, String password) {
+        Example userExample = new Example(Users.class);
+        Example.Criteria userCirteria = userExample.createCriteria();
+        userCirteria.andEqualTo("username", username);
+        userCirteria.andEqualTo("password", password);
+
+        Users result = usersMapper.selectOneByExample(userExample);
+
+        return result;
     }
 }
