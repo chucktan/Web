@@ -8,6 +8,7 @@ org\n3r\idworker\Test.class
 org\n3r\idworker\Sid$1.class
 org\n3r\idworker\utils\Props.class
 org\n3r\idworker\strategy\DefaultRandomCodeStrategy$1.class
+com\imooc\controller\JsonUtils.class
 org\n3r\idworker\Sid.class
 org\n3r\idworker\RandomCodeStrategy.class
 org\n3r\idworker\utils\IPv4Utils.class
@@ -19,6 +20,7 @@ org\n3r\idworker\DayCode.class
 org\n3r\idworker\strategy\DayPrefixRandomCodeStrategy.class
 org\n3r\idworker\IdWorker.class
 com\imooc\enums\Sex.class
+com\imooc\controller\CookieUtils.class
 org\n3r\idworker\strategy\DefaultWorkerIdStrategy$1.class
 org\n3r\idworker\utils\Serializes.class
 org\n3r\idworker\InvalidSystemClock.class
