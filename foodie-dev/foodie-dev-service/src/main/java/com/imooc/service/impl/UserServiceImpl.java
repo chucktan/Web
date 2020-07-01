@@ -40,6 +40,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users createUser(UserBo userBO) {
 
+//        try {
+//            Thread.sleep(2500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         String userId = sid.nextShort();
         Users user = new Users();
         user.setId(userId);

@@ -45,11 +45,6 @@ public class PassportController {
     public IMOOCJSONResult regist(@RequestBody UserBo userBo,HttpServletRequest request,HttpServletResponse response) {
 
 
-        try {
-            Thread.sleep(2500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         String username = userBo.getUsername();
         String password = userBo.getPassword();
         String confirmPwd = userBo.getConfirmPassword();
@@ -102,6 +97,19 @@ public class PassportController {
         userResult = setNullProperty(userResult);
         CookieUtils.setCookie(request,response,"user",JsonUtils.objectToJson(userResult),true);
         return IMOOCJSONResult.ok(userResult);
+    }
+
+    @ApiOperation(value = "用户退出登录",notes = "用户退出登录",httpMethod = "POST")
+    @PostMapping("/logout")
+    public  IMOOCJSONResult logout(@RequestParam String userid,HttpServletRequest request,HttpServletResponse response){
+
+        //清楚用户相关信息的Cookie
+        CookieUtils.deleteCookie(request,response,"user");
+
+        //TODO 用户退出登录，需要清空购物车
+        //TODO 分布式会话中需要清除用户数据
+
+        return  IMOOCJSONResult.ok();
     }
 
     private Users setNullProperty(Users userResult) {
