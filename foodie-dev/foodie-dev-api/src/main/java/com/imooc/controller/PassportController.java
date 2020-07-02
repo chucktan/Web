@@ -44,7 +44,6 @@ public class PassportController {
     @PostMapping("/regist")
     public IMOOCJSONResult regist(@RequestBody UserBo userBo,HttpServletRequest request,HttpServletResponse response) {
 
-
         String username = userBo.getUsername();
         String password = userBo.getPassword();
         String confirmPwd = userBo.getConfirmPassword();
@@ -101,7 +100,7 @@ public class PassportController {
 
     @ApiOperation(value = "用户退出登录",notes = "用户退出登录",httpMethod = "POST")
     @PostMapping("/logout")
-    public  IMOOCJSONResult logout(@RequestParam String userid,HttpServletRequest request,HttpServletResponse response){
+    public  IMOOCJSONResult logout(@RequestParam String userId,HttpServletRequest request,HttpServletResponse response){
 
         //清楚用户相关信息的Cookie
         CookieUtils.deleteCookie(request,response,"user");

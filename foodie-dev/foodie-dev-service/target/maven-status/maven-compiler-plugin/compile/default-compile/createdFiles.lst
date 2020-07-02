@@ -1,3 +1,5 @@
+com\imooc\service\impl\CarouselServiceImpl.class
+com\imooc\service\CarouselService.class
 com\imooc\service\impl\StuServiceImpl.class
 com\imooc\service\impl\UserServiceImpl.class
 com\imooc\service\StuService.class

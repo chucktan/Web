@@ -28,3 +28,4 @@ org\n3r\idworker\utils\Ip.class
 org\n3r\idworker\strategy\DefaultWorkerIdStrategy$2.class
 org\n3r\idworker\strategy\DefaultWorkerIdStrategy.class
 com\imooc\utils\IMOOCJSONResult.class
+com\imooc\enums\YesOrNo.class
