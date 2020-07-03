@@ -40,3 +40,4 @@ public class UserBo {
         this.confirmPassword = confirmPassword;
     }
 }
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.mapper.CategoryMapperCustom" >
+  <select id="getSubCatList" parameterType="int">
+    SELECT
+	f.id as id,
+	f.`name` as `name`,
+	f.type AS type,
+	f.father_id as fatherId,
+	c.id as subId,
+	c.`name` as subName,
+	c.type as subType,
+	c.father_id as subFatherId
+FROM
+	category f
+	LEFT JOIN category c ON f.id = c.father_id
+WHERE
+	f.father_id	= #{rootCatId}
+  </select>
+</mapper>
