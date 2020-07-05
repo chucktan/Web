@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class StuServiceImpl implements StuService {
     @Autowired
     private StuMapper stuMapper;
-    
+
     @Transactional(propagation = Propagation.SUPPORTS)
     //如果当前有事务，则使用事务；如果当前没有事务，则不使用事务。
     //举例：领导没饭吃，我也没饭吃；领导有饭吃，我也有饭吃。
@@ -34,7 +34,7 @@ public class StuServiceImpl implements StuService {
     //REQUIRED_New:如果有事务，则挂起该事务，并且自己创建一个新的事务给自己使用；如果当前没有事务，则同REQUIRED
     @Override
     public void saveStu() {
-        Stu stu= new Stu();
+        Stu stu = new Stu();
         stu.setAge(19);
         stu.setName("Lucy");
         stuMapper.insert(stu);
