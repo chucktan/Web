@@ -10,12 +10,13 @@ import com.imooc.pojo.ItemsParam;
 import com.imooc.pojo.ItemsSpec;
 import com.imooc.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
-
+@Service
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
@@ -27,6 +28,7 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemsParamMapper itemsParamMapper;
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Items queryItemById(String itemId) {
         return itemsMapper.selectByPrimaryKey(itemId);
