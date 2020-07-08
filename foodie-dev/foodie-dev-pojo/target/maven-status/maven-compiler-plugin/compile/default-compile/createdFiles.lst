@@ -1,4 +1,5 @@
 com\imooc\pojo\OrderStatus.class
+com\imooc\pojo\vo\ItemCommentVo.class
 com\imooc\pojo\Carousel.class
 com\imooc\pojo\bo\UserBo.class
 com\imooc\pojo\Orders.class
@@ -12,6 +13,7 @@ com\imooc\pojo\OrderItems.class
 com\imooc\pojo\vo\SubCategoryVo.class
 com\imooc\pojo\vo\ItemInfoVo.class
 com\imooc\pojo\vo\SimpleItemVo.class
+com\imooc\pojo\vo\CommentLevelCountsVo.class
 com\imooc\pojo\Stu.class
 com\imooc\pojo\Users.class
 com\imooc\pojo\vo\NewItemsVo.class

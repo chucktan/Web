@@ -13,7 +13,7 @@ import java.util.List;
 public class ItemInfoVo {
 
     private Items item;
-    private List<ItemsImg> itemsImgList;
+    private List<ItemsImg> itemImgList;
     private ItemsParam itemParams;
     private List<ItemsSpec> itemSpecList;
 
@@ -25,12 +25,12 @@ public class ItemInfoVo {
         this.item = item;
     }
 
-    public List<ItemsImg> getItemsImgList() {
-        return itemsImgList;
+    public List<ItemsImg> getItemImgList() {
+        return itemImgList;
     }
 
-    public void setItemsImgList(List<ItemsImg> itemsImgList) {
-        this.itemsImgList = itemsImgList;
+    public void setItemImgList(List<ItemsImg> itemImgList) {
+        this.itemImgList = itemImgList;
     }
 
     public ItemsParam getItemParams() {
