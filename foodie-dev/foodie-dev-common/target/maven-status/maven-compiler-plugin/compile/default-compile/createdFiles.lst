@@ -4,6 +4,7 @@ org\n3r\idworker\utils\HttpReq.class
 org\n3r\idworker\Code.class
 org\n3r\idworker\strategy\FileLock.class
 com\imooc\utils\MD5Utils.class
+com\imooc\utils\PagedGridResult.class
 org\n3r\idworker\Test.class
 org\n3r\idworker\Sid$1.class
 org\n3r\idworker\utils\Props.class
@@ -16,6 +17,7 @@ org\n3r\idworker\utils\Props$Silent.class
 org\n3r\idworker\WorkerIdStrategy.class
 com\imooc\utils\DateUtil.class
 org\n3r\idworker\utils\Utils.class
+com\imooc\utils\DesensitizationUtil.class
 com\imooc\enums\CommentLevel.class
 org\n3r\idworker\DayCode.class
 org\n3r\idworker\strategy\DayPrefixRandomCodeStrategy.class

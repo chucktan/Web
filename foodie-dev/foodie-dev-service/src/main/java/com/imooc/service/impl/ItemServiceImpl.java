@@ -1,11 +1,15 @@
 package com.imooc.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.imooc.enums.CommentLevel;
 import com.imooc.mapper.*;
 import com.imooc.pojo.*;
 import com.imooc.pojo.vo.CommentLevelCountsVo;
 import com.imooc.pojo.vo.ItemCommentVo;
 import com.imooc.service.ItemService;
+import com.imooc.utils.DesensitizationUtil;
+import com.imooc.utils.PagedGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -87,7 +91,7 @@ public class ItemServiceImpl implements ItemService {
         return  commentLevelCountsVo;
     }
 
-    Integer getCommentCounts(String itemId,Integer level){
+    private  Integer getCommentCounts(String itemId,Integer level){
         ItemsComments itemsComments = new ItemsComments();
         itemsComments.setItemId(itemId);
         if (level !=null){
@@ -99,12 +103,35 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ItemCommentVo> queryPagedComments(String itemId, Integer level) {
+    public PagedGridResult queryPagedComments(String itemId, Integer level,Integer page,Integer pageSize) {
 
         Map<String,Object> map = new HashMap<>();
         map.put("itemId",itemId);
         map.put("level",level);
 
-        return itemsMapperCustom.queryItemComments(map);
+        /**
+         * page: 第几页
+         * pageSize: 每页显示条数
+         */
+        PageHelper.startPage(page, pageSize);
+        List<ItemCommentVo> list =  itemsMapperCustom.queryItemComments(map);
+        for (ItemCommentVo itemCommentVo:list) {
+            itemCommentVo.setNickname(DesensitizationUtil.commonDisplay(itemCommentVo.getNickname()));
+        }
+        return  setterPagedGrid(list,page);
+
+    }
+
+    private  PagedGridResult setterPagedGrid(List<?> list,Integer page){
+
+        PageInfo<?> pageList = new PageInfo<>(list);
+
+        //重新封装
+        PagedGridResult pagedGridResult = new PagedGridResult();
+        pagedGridResult.setPage(page);
+        pagedGridResult.setRows(list);
+        pagedGridResult.setTotal(pageList.getPages());
+        pagedGridResult.setRecords(pageList.getTotal());
+        return pagedGridResult ;
     }
 }
