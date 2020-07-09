@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.imooc.mapper.ItemsMapperCustom" >
+<mapper namespace="com.imooc.mapper.ItemsMapperCustom">
 
-  <select id="queryItemComments" resultType="com.imooc.pojo.vo.ItemCommentVo" parameterType="Map">
-SELECT
-	ic.comment_level as commentLevel,
-	ic.content as content,
-	ic.sepc_name as specName,
-	ic.created_time as createdTime,
-	u.face as userFace,
-	u.nickname as nickname
+    <select id="queryItemComments" resultType="com.imooc.pojo.vo.ItemCommentVo" parameterType="Map">
+        SELECT
+        	ic.comment_level as commentLevel,
+        	ic.content as content,
+        	ic.sepc_name as specName,
+       	 	ic.created_time as createdTime,
+        	u.face as userFace,
+       		u.nickname as nickname
 
-FROM
-	items_comments ic
-	LEFT JOIN users u ON ic.user_id = u.id
+        FROM
+        	items_comments ic
+        LEFT JOIN users u ON ic.user_id = u.id
+        WHERE
+        	ic.item_id = #{paramsMap.itemId}
+        <if test=" paramsMap.level !=null and paramsMap.level != '' ">
+            AND ic.comment_level = #{paramsMap.level}
+        </if>
+    </select>
+
+    <select id="queryItemComments" resultType="com.imooc.pojo.vo.ItemCommentVo" parameterType="Map">
+		SELECT
+			i.id AS itemId,
+			i.item_name AS itemName,
+			i.sell_counts AS sellCounts,
+			ii.url AS imgUrl,
+			temp.price AS price
+	FROM
+		items i
+	LEFT JOIN items_img ii ON i.id = ii.item_id
+	LEFT JOIN ( SELECT item_id AS itemId, min( price_discount ) AS price FROM items_spec WHERE 1 = 1 GROUP BY item_id ) temp
+	ON temp.itemId = i.id
 WHERE
-	ic.item_id = #{paramsMap.itemId}
-    <if test=" paramsMap.level !=null and paramsMap.level != '' ">
-AND  ic.comment_level = #{paramsMap.level}
-    </if>
-  </select>
+	ii.is_main = 1
+	</select>
 </mapper>
