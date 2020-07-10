@@ -11,7 +11,7 @@
 			property:对应三级分类的list属性名
 			ofType:集合的类型，三级分类的vo
 		-->
-		<collection property="subCateList" ofType="com.imooc.pojo.vo.SubCategoryVo">
+		<collection property="subCatList" ofType="com.imooc.pojo.vo.SubCategoryVo">
 			<id column="subId" property="subId" jdbcType="INTEGER" />
 			<result column="subName" property="subName" jdbcType="VARCHAR" />
 			<result column="subType" property="subType" jdbcType="INTEGER" />
@@ -21,7 +21,7 @@
   <select id="getSubCatList" resultMap="myCategoryVo" parameterType="int">
     SELECT
 	f.id as id,
-	f.`name` as `name`,
+	f.`name` as name,
 	f.type AS type,
 	f.father_id as fatherId,
 	c.id as subId,

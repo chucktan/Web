@@ -12,7 +12,7 @@ public class CategoryVo {
     private  String type;
     private  String fatherId;
     //三级分类vo list
-    private List<SubCategoryVo> subCateList;
+    private List<SubCategoryVo> subCatList;
 
     public Integer getId() {
         return id;
@@ -46,11 +46,11 @@ public class CategoryVo {
         this.fatherId = fatherId;
     }
 
-    public List<SubCategoryVo> getSubCateList() {
-        return subCateList;
+    public List<SubCategoryVo> getSubCatList() {
+        return subCatList;
     }
 
-    public void setSubCateList(List<SubCategoryVo> subCateList) {
-        this.subCateList = subCateList;
+    public void setSubCatList(List<SubCategoryVo> subCatList) {
+        this.subCatList = subCatList;
     }
 }
