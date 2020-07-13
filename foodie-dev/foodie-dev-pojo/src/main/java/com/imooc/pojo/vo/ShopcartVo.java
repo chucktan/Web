@@ -1,5 +1,8 @@
 package com.imooc.pojo.vo;
 
+/**
+ * 购物车信息 Vo
+ */
 public class ShopcartVo {
 
     private  String  itemId;

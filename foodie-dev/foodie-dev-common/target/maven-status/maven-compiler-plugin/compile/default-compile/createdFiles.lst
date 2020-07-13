@@ -3,6 +3,7 @@ org\n3r\idworker\strategy\DefaultRandomCodeStrategy.class
 org\n3r\idworker\utils\HttpReq.class
 org\n3r\idworker\Code.class
 org\n3r\idworker\strategy\FileLock.class
+com\imooc\utils\MobileEmailUtils.class
 com\imooc\utils\MD5Utils.class
 com\imooc\utils\PagedGridResult.class
 org\n3r\idworker\Test.class
