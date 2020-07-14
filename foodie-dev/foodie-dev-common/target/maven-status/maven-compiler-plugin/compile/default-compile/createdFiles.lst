@@ -26,6 +26,7 @@ org\n3r\idworker\IdWorker.class
 com\imooc\enums\Sex.class
 com\imooc\controller\CookieUtils.class
 org\n3r\idworker\strategy\DefaultWorkerIdStrategy$1.class
+com\imooc\enums\PayMethod.class
 org\n3r\idworker\utils\Serializes.class
 org\n3r\idworker\InvalidSystemClock.class
 org\n3r\idworker\utils\Ip.class
