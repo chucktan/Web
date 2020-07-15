@@ -2,9 +2,11 @@ package com.imooc.controller;
 
 import com.imooc.enums.PayMethod;
 import com.imooc.pojo.bo.SubmitOrderBo;
+import com.imooc.service.OrderService;
 import com.imooc.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrdersController {
 
-
+    @Autowired
+    private OrderService orderService;
 
     @ApiOperation(value = "用户下单",notes = "创建下单",httpMethod = "POST")
     @PostMapping("/create")
@@ -28,7 +31,11 @@ public class OrdersController {
             return  IMOOCJSONResult.errorMsg("支付方式不能为空");
         }
         //1.创建订单
+        orderService.createOrder(submitOrderBo);
+
         //2.创建订单后，移除购物车中已经结算（已提交）的商品
+        //TODO 整合redis后，完善购物车中的已结算商品，并且同步到前端的cookie
+
         //3.向支付中心发送当前订单，用于保存支付中心的订单数据
 
         return  IMOOCJSONResult.ok();

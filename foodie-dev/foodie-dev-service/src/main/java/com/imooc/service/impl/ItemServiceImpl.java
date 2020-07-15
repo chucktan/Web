@@ -183,10 +183,27 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public String queryItemMainImgById(String itemId) {
         ItemsImg itemsImg = new ItemsImg();
-        itemsImg.setId(itemId);
+        itemsImg.setItemId(itemId);
         itemsImg.setIsMain(YesOrNo.YES.type);
 
         ItemsImg result = itemsImgMapper.selectOne(itemsImg);
         return  result!=null?result.getUrl():"";
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void decreaseItemSpecStock(String specId, int buyCounts) {
+
+        //synchronized 不建议使用，集群下无用，性能低下
+        //锁数据库：不推荐，导致数据库性能低下
+        //分布式锁 zookeeper redis
+
+        //当前采用乐观锁
+
+        int result = itemsMapperCustom.decreaseItemSpecStock(specId, buyCounts);
+        if (result != 1){
+            throw  new RuntimeException("订单创建失败，由于库存不足");
+        }
+
     }
 }

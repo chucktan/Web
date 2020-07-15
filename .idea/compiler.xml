@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="foreign-exchange-bill" />
         <module name="foodie-dev-common" />
         <module name="foodie-dev-pojo" />
         <module name="foodie-dev-api" />
@@ -20,6 +21,13 @@
       <module name="foodie-dev-mapper" target="1.8" />
       <module name="foodie-dev-pojo" target="1.8" />
       <module name="foodie-dev-service" target="1.8" />
+      <module name="foreign-exchange-bill" target="1.5" />
+      <module name="foreign-exchange-bills" target="1.5" />
+      <module name="foreign-exchange-bills-api" target="1.5" />
+      <module name="foreign-exchange-bills-common" target="1.5" />
+      <module name="foreign-exchange-bills-mapper" target="1.5" />
+      <module name="foreign-exchange-bills-pojo" target="1.5" />
+      <module name="foreign-exchange-bills-service" target="1.5" />
       <module name="mybatis-generator-for-imooc" target="1.5" />
     </bytecodeTargetLevel>
   </component>

@@ -7,11 +7,17 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/foodie-dev/pom.xml" />
+        <option value="$PROJECT_DIR$/../pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/foodie-dev/foodie-dev-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../foreign-exchange-bills/foreign-exchange-bills-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../foreign-exchange-bills/foreign-exchange-bills-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../foreign-exchange-bills/foreign-exchange-bills-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/../foreign-exchange-bills/foreign-exchange-bills-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/../foreign-exchange-bills/foreign-exchange-bills-service/pom.xml" />
       </set>
     </option>
   </component>

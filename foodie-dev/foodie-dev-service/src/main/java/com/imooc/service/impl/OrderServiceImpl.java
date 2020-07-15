@@ -1,11 +1,11 @@
 package com.imooc.service.impl;
 
+import com.imooc.enums.OrderStatusEnum;
 import com.imooc.enums.YesOrNo;
+import com.imooc.mapper.OrderItemsMapper;
+import com.imooc.mapper.OrderStatusMapper;
 import com.imooc.mapper.OrdersMapper;
-import com.imooc.pojo.Items;
-import com.imooc.pojo.ItemsSpec;
-import com.imooc.pojo.Orders;
-import com.imooc.pojo.UserAddress;
+import com.imooc.pojo.*;
 import com.imooc.pojo.bo.SubmitOrderBo;
 import com.imooc.service.AddressService;
 import com.imooc.service.ItemService;
@@ -38,6 +38,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private OrderItemsMapper orderItemsMapper;
+
+    @Autowired
+    private OrderStatusMapper orderStatusMapper;
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void createOrder(SubmitOrderBo submitOrderBo) {
@@ -57,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
         newOrder.setUserId(userId);
         newOrder.setReceiverName(userAddress.getReceiver());
         newOrder.setReceiverMobile(userAddress.getMobile());
-        newOrder.setReceiverAddress(userAddress.getProvince()+" "+userAddress.getCity()+" "+userAddress.getDistrict()+" "+userAddress.getExtand());
+        newOrder.setReceiverAddress(userAddress.getProvince()+" "+userAddress.getCity()+" "+userAddress.getDistrict()+" "+userAddress.getDetail());
         newOrder.setPostAmount(postAmount);
         newOrder.setPayMethod(payMethod);
         newOrder.setLeftMsg(leftMsg);
@@ -84,9 +90,32 @@ public class OrderServiceImpl implements OrderService {
             String imgUrl = itemService.queryItemMainImgById(itemId);
 
             //2.3 循环保存子订单数据到数据库
+            String subOrderId = sid.nextShort();
+            OrderItems subOrderItem = new OrderItems();
+            subOrderItem.setId(subOrderId);
+            subOrderItem.setOrderId(orderId);
+            subOrderItem.setItemId(itemId);
+            subOrderItem.setItemName(item.getItemName());
+            subOrderItem.setItemImg(imgUrl);
+            subOrderItem.setBuyCounts(buyCount);
+            subOrderItem.setItemSpecId(itemSpecId);
+            subOrderItem.setItemSpecName(itemsSpec.getName());
+            subOrderItem.setPrice(itemsSpec.getPriceDiscount());
+            orderItemsMapper.insert(subOrderItem);
+            //2.4 在用户提交订单后，规格表中需要扣除库存
+            itemService.decreaseItemSpecStock(itemSpecId,buyCount);
 
         }
+        newOrder.setTotalAmount(totalAmount);
+        newOrder.setRealPayAmount(realPayAmount);
+        ordersMapper.insert(newOrder);
 
         //3.保存订单状态表
+        OrderStatus waitPayOrderStatus = new OrderStatus();
+        waitPayOrderStatus.setOrderId(orderId);
+        waitPayOrderStatus.setOrderStatus(OrderStatusEnum.WAIT_PAY.type);
+        waitPayOrderStatus.setCreatedTime(new Date());
+        orderStatusMapper.insert(waitPayOrderStatus);
+
     }
 }

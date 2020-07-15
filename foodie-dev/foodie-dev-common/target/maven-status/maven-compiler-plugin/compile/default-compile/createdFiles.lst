@@ -14,6 +14,7 @@ com\imooc\controller\JsonUtils.class
 org\n3r\idworker\Sid.class
 org\n3r\idworker\RandomCodeStrategy.class
 org\n3r\idworker\utils\IPv4Utils.class
+com\imooc\enums\OrderStatusEnum.class
 org\n3r\idworker\utils\Props$Silent.class
 org\n3r\idworker\WorkerIdStrategy.class
 com\imooc\utils\DateUtil.class
