@@ -34,9 +34,10 @@ public class ServiceLogAspect {
      * 第三处 .. 代表该包以及其子包下的所有类方法
      * 第四处 * 代表类名，*代表所有类
      * 第五处 *(..) *代表类中的方法名，(..)表示方法中的任何参数
-     * @param  joinpoint
+     * @param  joinPoint
      * @return
      * @throws Throwable
+     *
      */
 
     @Around("execution(* com.imooc.service.impl..*.*(..))")

@@ -57,7 +57,7 @@ public class AddressController {
             return  checkRes;
         }
 
-        addressService.updateUserAddress(addressBo);
+        addressService.addNewUserAddress(addressBo);
         return  IMOOCJSONResult.ok();
     }
 

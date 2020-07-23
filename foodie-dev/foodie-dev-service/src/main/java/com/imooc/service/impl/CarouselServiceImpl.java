@@ -21,6 +21,7 @@ public class CarouselServiceImpl  implements CarouselService {
     @Autowired
     private CarouselMapper carouselMapper;
 
+
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<Carousel> queryAll(Integer isShow) {
