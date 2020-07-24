@@ -2,11 +2,13 @@ com\imooc\pojo\OrderStatus.class
 com\imooc\pojo\vo\ItemCommentVo.class
 com\imooc\pojo\bo\SubmitOrderBo.class
 com\imooc\pojo\Carousel.class
+com\imooc\pojo\vo\OrderVo.class
 com\imooc\pojo\OrderItems.class
 com\imooc\pojo\vo\SubCategoryVo.class
 com\imooc\pojo\vo\ItemInfoVo.class
 com\imooc\pojo\Users.class
 com\imooc\pojo\vo\ShopcartVo.class
+com\imooc\pojo\vo\MerchantOrdersVo.class
 com\imooc\pojo\bo\AddressBo.class
 com\imooc\pojo\bo\UserBo.class
 com\imooc\pojo\Orders.class
