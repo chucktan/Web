@@ -1,5 +1,6 @@
 package com.imooc.service;
 
+import com.imooc.pojo.OrderStatus;
 import com.imooc.pojo.bo.SubmitOrderBo;
 import com.imooc.pojo.vo.OrderVo;
 
@@ -22,4 +23,12 @@ public interface OrderService {
      * @param orderStatus
      */
     public void  updateOrderStatus(String orderId,Integer orderStatus);
+
+
+    /**
+     * 查询用户订单信息
+     * @param orderId
+     * @return
+     */
+    public OrderStatus queryOrderStatusInfo(String orderId);
  }
