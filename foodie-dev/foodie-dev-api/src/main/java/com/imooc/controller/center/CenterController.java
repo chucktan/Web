@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author
  * @create 2020-08-13-16:43
  */
-@Api(value = "center-用户中心",tags = {"用户中心展示的相关接口"})
+@Api(value = "center-用户中心",tags = {"用户中心展示的相关接口"}) 
 @RestController
 @RequestMapping("center")
 public class CenterController {
@@ -25,7 +25,7 @@ public class CenterController {
     private CenterUserService centerUserService;
 
     @ApiOperation(value = "获取用户信息",notes = "获取用户信息",httpMethod = "GET")
-    @GetMapping("userInfo")
+    @GetMapping("/userInfo")
     public IMOOCJSONResult userInfo(
             @ApiParam(name = "userId",value = "用户Id",required = true)
             @RequestParam  String userId){
@@ -34,4 +34,6 @@ public class CenterController {
         return IMOOCJSONResult.ok(user);
 
     }
+
 }
+

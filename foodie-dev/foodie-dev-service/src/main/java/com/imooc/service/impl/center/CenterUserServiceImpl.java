@@ -2,11 +2,15 @@ package com.imooc.service.impl.center;
 
 import com.imooc.mapper.UsersMapper;
 import com.imooc.pojo.Users;
+import com.imooc.pojo.bo.center.CenterUserBo;
 import com.imooc.service.center.CenterUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 @Service
 public class CenterUserServiceImpl implements CenterUserService {
@@ -22,6 +26,21 @@ public class CenterUserServiceImpl implements CenterUserService {
         user.setPassword(null);
 
         return user;
+
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public Users updateUserInfo(String userId, CenterUserBo centerUserBo) {
+
+        Users updateUser = new Users();
+        BeanUtils.copyProperties(centerUserBo,updateUser);
+        updateUser.setId(userId);
+        updateUser.setUpdatedTime(new Date());
+
+        usersMapper.updateByPrimaryKeySelective(updateUser);
+
+        return queryUserInfo(userId);
 
     }
 }

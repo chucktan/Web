@@ -21,6 +21,7 @@ com\imooc\pojo\Category.class
 com\imooc\pojo\vo\SearchItemsVo.class
 com\imooc\pojo\vo\SimpleItemVo.class
 com\imooc\pojo\vo\CommentLevelCountsVo.class
+com\imooc\pojo\bo\center\CenterUserBo.class
 com\imooc\pojo\Stu.class
 com\imooc\pojo\vo\NewItemsVo.class
 com\imooc\pojo\bo\ShopcartBo.class
