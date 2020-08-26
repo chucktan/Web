@@ -2,6 +2,8 @@ package com.imooc.controller;
 
 import org.springframework.stereotype.Controller;
 
+import java.io.File;
+
 @Controller
 public class BaseController {
 
@@ -20,5 +22,7 @@ public class BaseController {
     public  static  final  String IMOOCUSERID = "7295794-2316581614";
     public  static  final  String PASSWORD = "3t59-g0jg-oikt-rpio";
 
+    //用户头像位置
+    public  static  final  String IMAGE_USER_FACE_LOCATION = File.separator + "workspaces"+ File.separator+"images"+ File.separator+"foodie"+File.separator+"faces";
 
 }
