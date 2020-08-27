@@ -97,6 +97,12 @@ public class CenterUserController extends BaseController {
                 //获取文件后缀名
                 String suffix = fileNameArr[fileNameArr.length-1];
 
+                //图片格式限制，防止黑客攻击
+                if (!suffix.equalsIgnoreCase("png")&&!suffix.equalsIgnoreCase("jpg")&&!suffix.equalsIgnoreCase("jpeg")){
+                    return  IMOOCJSONResult.errorMsg("图片格式不正确！");
+                }
+
+
                 //face-{userid}.png
                 //文件名称重组 覆盖式上传，增量式：额外拼接当前时间
                 String newFileName = "face-"+userId+"."+suffix;
