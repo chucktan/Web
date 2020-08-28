@@ -31,8 +31,7 @@
 			od.real_pay_amount AS realPayAmount,
 			od.post_amount AS postAmount,
 			od.is_comment AS isComment,
-			os.order_status AS orderStat
-			us
+			os.order_status AS orderStatus
 		FROM
 			orders od
 			LEFT JOIN order_status os ON od.id = os.order_id
@@ -62,7 +61,8 @@
 	<select id="queryMyOrdersDoNotUse" resultMap="myOrdersVo" parameterType="Map">
 		SELECT
 		od.id AS orderId,
-		od.created_time AS createTime,
+		od.created_time AS cr
+		eateTime,
 		od.pay_method AS payMethod,
 		od.real_pay_amount AS realPayAmount,
 		od.post_amount AS postAmount,

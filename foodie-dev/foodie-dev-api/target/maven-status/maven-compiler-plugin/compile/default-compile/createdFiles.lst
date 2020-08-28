@@ -5,6 +5,7 @@ com\imooc\controller\HelloController.class
 com\imooc\config\Swagger2.class
 com\imooc\config\WebMvcConfig.class
 com\imooc\config\CorsConfig.class
+com\imooc\controller\center\MyCommentsController.class
 com\imooc\aspect\ServiceLogAspect.class
 META-INF\spring-configuration-metadata.json
 com\imooc\controller\PassportController.class

@@ -7,6 +7,8 @@ com\imooc\service\CarouselService.class
 com\imooc\service\impl\CategoryServiceImpl.class
 com\imooc\service\impl\StuServiceImpl.class
 com\imooc\service\center\CenterUserService.class
+com\imooc\service\impl\center\MyCommentsServiceImpl.class
+com\imooc\service\center\MyCommentsService.class
 com\imooc\service\impl\AddressServiceImpl.class
 com\imooc\service\impl\center\CenterUserServiceImpl.class
 com\imooc\service\impl\CarouselServiceImpl.class
