@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.mapper.ItemsCommentsMapperCustom" >
+
+    <select id="saveComments" parameterType="Map">
+        INSERT  into
+        items_comments(
+        id,
+        user_id,
+        item_id,
+        item_name,
+        item_spec_id,
+        sepc_name,
+        comment_level,
+        content,
+        create_time,
+        update_time
+        )
+        values
+        <foreach collection="commentList" index="index" item="item" separator=",">
+        (
+            #{item.commentId},
+            #{userId},
+            #{item.itemId},
+            #{item.itemName},
+            #{item.itemSpecId},
+            #{item.itemSpecName},
+            #{item.commentLevel},
+            #{item.content},
+            now(),
+            now()
+        )
+        </foreach>
+
+    </select>
+
+</mapper>

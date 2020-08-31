@@ -15,6 +15,7 @@ com\imooc\pojo\bo\AddressBo.class
 com\imooc\pojo\bo\UserBo.class
 com\imooc\pojo\Orders.class
 com\imooc\pojo\ItemsSpec.class
+com\imooc\pojo\bo\center\OrderItemsCommentBo.class
 com\imooc\pojo\ItemsComments.class
 com\imooc\pojo\ItemsParam.class
 com\imooc\pojo\UserAddress.class
