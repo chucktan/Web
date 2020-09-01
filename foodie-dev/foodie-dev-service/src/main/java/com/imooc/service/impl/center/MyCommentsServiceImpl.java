@@ -1,5 +1,6 @@
 package com.imooc.service.impl.center;
 
+import com.github.pagehelper.PageHelper;
 import com.imooc.enums.YesOrNo;
 import com.imooc.mapper.ItemsCommentsMapperCustom;
 import com.imooc.mapper.OrderItemsMapper;
@@ -9,7 +10,10 @@ import com.imooc.pojo.OrderItems;
 import com.imooc.pojo.OrderStatus;
 import com.imooc.pojo.Orders;
 import com.imooc.pojo.bo.center.OrderItemsCommentBo;
+import com.imooc.pojo.vo.MyCommentVo;
+import com.imooc.service.BaseService;
 import com.imooc.service.center.MyCommentsService;
+import com.imooc.utils.PagedGridResult;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +30,7 @@ import java.util.Map;
  * @create 2020-08-28-15:58
  */
 @Service
-public class MyCommentsServiceImpl implements MyCommentsService {
+public class MyCommentsServiceImpl extends BaseService implements MyCommentsService {
 
     @Autowired
     private OrderItemsMapper orderItemsMapper;
@@ -77,6 +81,21 @@ public class MyCommentsServiceImpl implements MyCommentsService {
         orderStatus.setOrderId(orderId);
         orderStatus.setCommentTime(new Date());
         orderStatusMapper.updateByPrimaryKeySelective(orderStatus);
+
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult queryMyComments(String userId, Integer page,Integer pageSize) {
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
+
+        PageHelper.startPage(page,pageSize);
+
+        List<MyCommentVo> list  = itemsCommentsMapperCustom.queryMyComments(map);
+        return setterPagedGrid(list,page);
+
 
     }
 }

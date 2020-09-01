@@ -18,4 +18,12 @@ public interface OrdersMapperCustom {
      * @return
      */
     public List<MyOrdersVo> queryMyOrders(@Param("paramsMap") Map<String,Object> map);
+
+
+    /**
+     * 查询用户评价数量
+     * @param map
+     * @return
+     */
+    public int queryMyComments(@Param("paramsMap") Map<String,Object> map);
  }

@@ -17,11 +17,9 @@ org\n3r\idworker\utils\IPv4Utils.class
 com\imooc\enums\OrderStatusEnum.class
 org\n3r\idworker\utils\Props$Silent.class
 org\n3r\idworker\WorkerIdStrategy.class
-com\imooc\utils\DateUtil.class
 org\n3r\idworker\utils\Utils.class
 com\imooc\utils\DesensitizationUtil.class
 com\imooc\enums\CommentLevel.class
-org\n3r\idworker\DayCode.class
 org\n3r\idworker\strategy\DayPrefixRandomCodeStrategy.class
 org\n3r\idworker\IdWorker.class
 com\imooc\enums\Sex.class

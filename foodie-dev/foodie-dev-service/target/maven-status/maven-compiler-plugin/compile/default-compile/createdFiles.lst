@@ -1,6 +1,7 @@
 com\imooc\service\CategoryService.class
 com\imooc\service\impl\ItemServiceImpl.class
 com\imooc\service\center\MyOrdersService.class
+com\imooc\service\BaseService.class
 com\imooc\service\impl\UserServiceImpl.class
 com\imooc\service\AddressService.class
 com\imooc\service\CarouselService.class

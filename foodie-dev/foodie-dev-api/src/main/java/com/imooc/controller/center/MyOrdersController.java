@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,13 +30,13 @@ public class MyOrdersController extends BaseController {
     @PostMapping("/query")
     public IMOOCJSONResult query(
             @ApiParam(name = "userId",value = "用户ID",required = true)
-            String userId,
+            @RequestParam  String userId,
             @ApiParam(name = "orderStatus",value = "订单状态",required = false)
-            Integer orderStatus,
+            @RequestParam Integer orderStatus,
             @ApiParam(name = "page", value = "查询下一页的第几页", required = false)
-            Integer page,
+            @RequestParam Integer page,
             @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false)
-            Integer pageSize){
+            @RequestParam Integer pageSize){
 
         if (StringUtils.isBlank(userId)) {
             return IMOOCJSONResult.errorMsg(null);
@@ -59,7 +60,7 @@ public class MyOrdersController extends BaseController {
     @PostMapping("/deliver")
     public IMOOCJSONResult deliver(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
-                    String orderId){
+            @RequestParam String orderId){
 
         if (StringUtils.isBlank(orderId)) {
             return IMOOCJSONResult.errorMsg(null);
@@ -75,9 +76,9 @@ public class MyOrdersController extends BaseController {
     @PostMapping("/confirmReceive")
     public IMOOCJSONResult confirmReceive(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
-                    String orderId,
+            @RequestParam    String orderId,
             @ApiParam(name = "userId",value = "用户Id",required = true)
-                    String userId){
+            @RequestParam    String userId){
 
         IMOOCJSONResult checkResult = checkUserOrder(orderId,userId);
         if (checkResult.getStatus() != HttpStatus.OK.value()){
@@ -98,9 +99,9 @@ public class MyOrdersController extends BaseController {
     @PostMapping("/delete")
     public IMOOCJSONResult delete(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
-                    String orderId,
+            @RequestParam    String orderId,
             @ApiParam(name = "userId",value = "用户Id",required = true)
-            String userId){
+            @RequestParam     String userId){
 
         IMOOCJSONResult checkResult = checkUserOrder(orderId,userId);
         if (checkResult.getStatus() != HttpStatus.OK.value()){

@@ -7,15 +7,14 @@ import com.imooc.pojo.Orders;
 import com.imooc.pojo.bo.center.OrderItemsCommentBo;
 import com.imooc.service.center.MyCommentsService;
 import com.imooc.utils.IMOOCJSONResult;
+import com.imooc.utils.PagedGridResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,9 +35,9 @@ public class MyCommentsController extends BaseController {
     @PostMapping("/pending")
     public IMOOCJSONResult pending(
             @ApiParam(name = "userId",value = "用户ID",required = true)
-            String userId,
+            @RequestParam  String userId,
             @ApiParam(name = "orderId",value = "订单ID",required = true)
-            String orderId){
+            @RequestParam  String orderId){
 
         if (StringUtils.isBlank(userId)||StringUtils.isBlank(orderId)) {
             return IMOOCJSONResult.errorMsg(null);
@@ -67,10 +66,10 @@ public class MyCommentsController extends BaseController {
     @PostMapping("/saveList")
     public IMOOCJSONResult saveList(
             @ApiParam(name = "userId",value = "用户ID",required = true)
-                    String userId,
+            @RequestParam   String userId,
             @ApiParam(name = "orderId",value = "订单ID",required = true)
-                    String orderId,
-            List<OrderItemsCommentBo> commentList){
+            @RequestParam   String orderId,
+            @RequestBody  List<OrderItemsCommentBo> commentList){
 
         if (StringUtils.isBlank(userId)||StringUtils.isBlank(orderId)) {
             return IMOOCJSONResult.errorMsg(null);
@@ -89,6 +88,27 @@ public class MyCommentsController extends BaseController {
 
         myCommentsService.saveComments(orderId,userId,commentList);
         return  IMOOCJSONResult.ok();
+    }
+
+    @ApiOperation(value = "查询订单列表",tags = "查询订单列表",httpMethod = "POST")
+    @PostMapping("/query")
+    public IMOOCJSONResult query(
+            @ApiParam(name = "userId",value = "用户ID",required = true)
+            @RequestParam   String userId,
+            @ApiParam(name = "page", value = "查询下一页的第几页", required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false)
+            @RequestParam Integer pageSize
+           ){
+
+        if (StringUtils.isBlank(userId)) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+
+        PagedGridResult gridResult =  myCommentsService.queryMyComments(userId,page,pageSize);
+
+        return IMOOCJSONResult.ok(gridResult);
+
     }
 
 }

@@ -1,7 +1,9 @@
 package com.imooc.mapper;
 
+import com.imooc.pojo.vo.MyCommentVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,5 +16,12 @@ public interface ItemsCommentsMapperCustom {
      *保存评价列表
      * @param map
      */
-    public void saveComments(@Param("paramsMap") Map<String,Object> map);
+    public void saveComments(Map<String,Object> map);
+
+    /**
+     *查询评价列表
+     * @param map
+     * @return
+     */
+    public List<MyCommentVo> queryMyComments(@Param("paramsMap") Map<String,Object> map);
  }

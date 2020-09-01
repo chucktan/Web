@@ -13,8 +13,8 @@
         sepc_name,
         comment_level,
         content,
-        create_time,
-        update_time
+        created_time,
+        updated_time
         )
         values
         <foreach collection="commentList" index="index" item="item" separator=",">
@@ -34,4 +34,33 @@
 
     </select>
 
+    <resultMap id="myComments" type="com.imooc.pojo.vo.MyCommentVo">
+        <id column="commentId" property="commentId" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="createdTime" property="createdTime" jdbcType="TIMESTAMP" />
+        <result column="itemId" property="itemId" jdbcType="VARCHAR" />
+        <result column="itemName" property="itemName" jdbcType="VARCHAR" />
+        <result column="sepcName" property="sepcName" jdbcType="VARCHAR" />
+        <result column="itemImg" property="itemImg" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="queryMyComments" parameterType="Map" resultMap="myComments">
+        SELECT
+            ic.id AS commentId,
+            ic.content AS content,
+            ic.created_time AS createdTime,
+            ic.item_id AS itemId,
+            ic.item_name AS itemName,
+            ic.sepc_name AS sepcName,
+            ii.url AS itemImg
+        FROM
+            items_comments ic
+            LEFT JOIN items_img ii ON ic.item_id = ii.item_id
+        WHERE
+            ic.user_id = #{paramsMap.userId}
+            AND ii.is_main = 1
+        ORDER BY
+            ic.created_time DESC
+
+    </select>
 </mapper>
