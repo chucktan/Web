@@ -1,6 +1,7 @@
 package com.imooc.controller.center;
 
 import com.imooc.controller.BaseController;
+import com.imooc.pojo.vo.OrderStatusCountsVo;
 import com.imooc.utils.IMOOCJSONResult;
 import com.imooc.utils.PagedGridResult;
 import io.swagger.annotations.Api;
@@ -113,6 +114,48 @@ public class MyOrdersController extends BaseController {
             return  IMOOCJSONResult.errorMsg("订单删除失败!");
         }
         return  IMOOCJSONResult.ok();
+    }
+
+    @ApiOperation(value = "获得订单状态数概况",tags = "获得订单状态数概况",httpMethod = "POST")
+    @PostMapping("/statusCounts")
+    public IMOOCJSONResult statusCounts(
+            @ApiParam(name = "userId",value = "用户Id",required = true)
+            @RequestParam   String userId){
+
+        if (StringUtils.isBlank(userId)) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+
+        OrderStatusCountsVo result = myOrdersService.getOrderStatusCounts(userId);
+        return  IMOOCJSONResult.ok(result);
+    }
+
+
+    @ApiOperation(value = "获得订单状态数概况",tags = "获得订单状态数概况",httpMethod = "POST")
+    @PostMapping("/trend")
+    public IMOOCJSONResult trend(
+            @ApiParam(name = "userId",value = "用户Id",required = true)
+            @RequestParam   String userId,
+            @ApiParam(name = "page", value = "查询下一页的第几页", required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false)
+            @RequestParam Integer pageSize
+            ){
+
+        if (StringUtils.isBlank(userId)) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+
+        if (page == null) {
+            page = 1;
+        }
+
+        if (pageSize == null){
+            pageSize = COMMON_PAGE_SIZE;
+        }
+
+        PagedGridResult result = myOrdersService.getOrdersTrend(userId,page,pageSize);
+        return  IMOOCJSONResult.ok(result);
     }
 
 

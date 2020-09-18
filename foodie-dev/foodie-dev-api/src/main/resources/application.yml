@@ -56,7 +56,7 @@ mybatis:
 mapper:
   mappers: com.imooc.my.mapper.MyMapper
   not-empty: false #在进行数据库操作的时候，判断表达式username !=null,是否追加 username !=''
-  identity: MYSQL
+  identity: MYSQL #数据库方言
 
 # 分页插件配置
 pagehelper:

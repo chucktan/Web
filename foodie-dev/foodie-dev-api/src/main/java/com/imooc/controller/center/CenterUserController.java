@@ -73,17 +73,20 @@ public class CenterUserController extends BaseController {
 
     @ApiOperation(value = "用户头像修改",notes = "用户头像修改",httpMethod = "POST")
     @PostMapping("/uploadFace")
+
     public IMOOCJSONResult uploadFace(
             @ApiParam(name = "userId",value = "用户Id",required = true)
             @RequestParam String userId,
             @ApiParam(name = "file",value = "用户头像",required = true)
             MultipartFile file,
+
             HttpServletRequest request,HttpServletResponse response){
 
         //定义头像保存的地址
 //        String filespace = IMAGE_USER_FACE_LOCATION;
         String filespace = fileUpload.getImageUserFaceLocation();
         //在路径上为每一个用户增加一个userid,用于区分不同用户上传
+
         String uploadPathPrefix = File.separator + userId;
         //开始上传文件
         if (file != null){
@@ -131,6 +134,7 @@ public class CenterUserController extends BaseController {
                             fileOutputStream.flush();
                             fileOutputStream.close();
                         }
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
