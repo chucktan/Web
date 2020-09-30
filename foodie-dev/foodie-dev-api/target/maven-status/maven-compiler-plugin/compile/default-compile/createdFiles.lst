@@ -18,5 +18,6 @@ com\imooc\config\OrderJob.class
 com\imooc\resource\FileUpload.class
 com\imooc\controller\StuFooController.class
 com\imooc\controller\OrdersController.class
+com\imooc\WarStarterApplication.class
 com\imooc\exception\CustomExceptionHandler.class
 com\imooc\controller\BaseController.class
