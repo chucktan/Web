@@ -20,7 +20,9 @@ public class BaseController {
 
     //微信支付成功 ->支付中心->天天吃货平台
     //                      |->回调通知的url
-    public  static  final  String PAYRETURNURL = "http://localhost:8088/orders/notifyMerchantOrderPaid";
+//    public  static  final  String PAYRETURNURL = "http://localhost:8088/orders/notifyMerchantOrderPaid";
+
+    public  static  final  String PAYRETURNURL = "http://api.btrade.cloud:8088/orders/notifyMerchantOrderPaid";
 
     //支付中心账号密码
     public  static  final  String IMOOCUSERID = "7295794-2316581614";

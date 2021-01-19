@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyOrdersController extends BaseController {
 
 //    @Autowired
+
 //    private MyOrdersService myOrdersService;
+
 
 
     @ApiOperation(value = "查询订单列表",tags = "查询订单列表",httpMethod = "POST")
@@ -62,6 +64,7 @@ public class MyOrdersController extends BaseController {
     public IMOOCJSONResult deliver(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
             @RequestParam String orderId){
+        
 
         if (StringUtils.isBlank(orderId)) {
             return IMOOCJSONResult.errorMsg(null);
