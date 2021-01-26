@@ -20,7 +20,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.5.RELEASE</version
+        >
         <relativePath />
     </parent>
 
@@ -50,7 +51,6 @@
 <!--                    <artifactId>spring-boot-starter-tomcat</artifactId>-->
 <!--                    <groupId>org.springframework.boot</groupId>-->
 <!--                </exclusion>-->
-
 <!--            </exclusions>-->
         </dependency>
         <!--AOP面向切面-->
@@ -134,6 +134,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.21</version>
+        </dependency>
+
+        <!--引入redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!--打包war[3] 添加依赖 -->

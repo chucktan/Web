@@ -24,12 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyOrdersController extends BaseController {
 
 //    @Autowired
-
 //    private MyOrdersService myOrdersService;
 
-
-
-    @ApiOperation(value = "查询订单列表",tags = "查询订单列表",httpMethod = "POST")
+    @ApiOperation(value = "查询订单列表",notes = "查询订单列表",httpMethod = "POST")
     @PostMapping("/query")
     public IMOOCJSONResult query(
             @ApiParam(name = "userId",value = "用户ID",required = true)
@@ -59,7 +56,7 @@ public class MyOrdersController extends BaseController {
 
 
     //商家发货后没有后端，所以这个接口仅仅只用于模拟
-    @ApiOperation(value = "商家发货",tags = "商家发货",httpMethod = "POST")
+    @ApiOperation(value = "商家发货",notes = "商家发货",httpMethod = "POST")
     @PostMapping("/deliver")
     public IMOOCJSONResult deliver(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
@@ -76,7 +73,7 @@ public class MyOrdersController extends BaseController {
         return  IMOOCJSONResult.ok();
     }
 
-    @ApiOperation(value = "用户确认订单",tags = "用户确认订单",httpMethod = "POST")
+    @ApiOperation(value = "用户确认订单",notes = "用户确认订单",httpMethod = "POST")
     @PostMapping("/confirmReceive")
     public IMOOCJSONResult confirmReceive(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
@@ -99,7 +96,7 @@ public class MyOrdersController extends BaseController {
     }
 
 
-    @ApiOperation(value = "用户删除订单",tags = "用户删除订单",httpMethod = "POST")
+    @ApiOperation(value = "用户删除订单",notes = "用户删除订单",httpMethod = "POST")
     @PostMapping("/delete")
     public IMOOCJSONResult delete(
             @ApiParam(name = "orderId",value = "订单Id",required = true)
@@ -119,7 +116,7 @@ public class MyOrdersController extends BaseController {
         return  IMOOCJSONResult.ok();
     }
 
-    @ApiOperation(value = "获得订单状态数概况",tags = "获得订单状态数概况",httpMethod = "POST")
+    @ApiOperation(value = "获得订单状态数概况",notes = "获得订单状态数概况",httpMethod = "POST")
     @PostMapping("/statusCounts")
     public IMOOCJSONResult statusCounts(
             @ApiParam(name = "userId",value = "用户Id",required = true)
@@ -134,7 +131,7 @@ public class MyOrdersController extends BaseController {
     }
 
 
-    @ApiOperation(value = "获得订单状态数概况",tags = "获得订单状态数概况",httpMethod = "POST")
+    @ApiOperation(value = "获得订单状态数概况",notes = "获得订单状态数概况",httpMethod = "POST")
     @PostMapping("/trend")
     public IMOOCJSONResult trend(
             @ApiParam(name = "userId",value = "用户Id",required = true)

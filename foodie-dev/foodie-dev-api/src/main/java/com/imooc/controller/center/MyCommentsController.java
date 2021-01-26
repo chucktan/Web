@@ -31,7 +31,7 @@ public class MyCommentsController extends BaseController {
     private MyCommentsService myCommentsService;
 
 
-    @ApiOperation(value = "评论信息列表查询",tags = "评论信息列表查询",httpMethod = "POST")
+    @ApiOperation(value = "评论信息列表查询",notes = "评论信息列表查询",httpMethod = "POST")
     @PostMapping("/pending")
     public IMOOCJSONResult pending(
             @ApiParam(name = "userId",value = "用户ID",required = true)
@@ -62,7 +62,7 @@ public class MyCommentsController extends BaseController {
     }
 
 
-    @ApiOperation(value = "保存评论列表",tags = "保存评论列表",httpMethod = "POST")
+    @ApiOperation(value = "保存评论列表",notes = "保存评论列表",httpMethod = "POST")
     @PostMapping("/saveList")
     public IMOOCJSONResult saveList(
             @ApiParam(name = "userId",value = "用户ID",required = true)
@@ -90,7 +90,7 @@ public class MyCommentsController extends BaseController {
         return  IMOOCJSONResult.ok();
     }
 
-    @ApiOperation(value = "查询订单列表",tags = "查询订单列表",httpMethod = "POST")
+    @ApiOperation(value = "查询订单列表",notes = "查询订单列表",httpMethod = "POST")
     @PostMapping("/query")
     public IMOOCJSONResult query(
             @ApiParam(name = "userId",value = "用户ID",required = true)
