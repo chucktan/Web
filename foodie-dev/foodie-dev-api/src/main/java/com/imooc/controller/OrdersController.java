@@ -3,13 +3,16 @@ package com.imooc.controller;
 import com.imooc.enums.OrderStatusEnum;
 import com.imooc.enums.PayMethod;
 import com.imooc.pojo.OrderStatus;
+import com.imooc.pojo.bo.ShopcartBo;
 import com.imooc.pojo.bo.SubmitOrderBo;
 import com.imooc.pojo.vo.MerchantOrdersVo;
 import com.imooc.pojo.vo.OrderVo;
 import com.imooc.service.OrderService;
 import com.imooc.utils.IMOOCJSONResult;
+import com.imooc.utils.RedisOperator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,8 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Controller
 @Api(value = "订单相关",tags = {"订单相关的api接口"})
@@ -33,6 +38,9 @@ public class OrdersController extends  BaseController{
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private RedisOperator redisOperator;
+
     @ApiOperation(value = "用户下单",notes = "创建下单",httpMethod = "POST")
     @PostMapping("/create")
     public IMOOCJSONResult create(
@@ -43,14 +51,26 @@ public class OrdersController extends  BaseController{
         if (submitOrderBo.getPayMethod()!= PayMethod.WEIXIN.type && submitOrderBo.getPayMethod()!= PayMethod.ALIPAY.type){
             return  IMOOCJSONResult.errorMsg("支付方式不能为空");
         }
+
+        List<ShopcartBo> shopcartBoList = new ArrayList<>();
+        String shopCartStr = redisOperator.get(FOODIE_SHOPCRAT + ":" +submitOrderBo.getUserId());
+        if (StringUtils.isBlank(shopCartStr)){
+            return  IMOOCJSONResult.errorMsg("购物数据不正确");
+        }else {
+            shopcartBoList = JsonUtils.jsonToList(shopCartStr,ShopcartBo.class);
+        }
+
         //1.创建订单
-        OrderVo orderVo = orderService.createOrder(submitOrderBo);
+        OrderVo orderVo = orderService.createOrder(shopcartBoList,submitOrderBo);
         String orderId = orderVo.getOrderId();
 
 
         //2.创建订单后，移除购物车中已经结算（已提交）的商品
-        //TODO 整合redis后，完善购物车中的已结算商品，并且同步到前端的cookie
-        CookieUtils.setCookie(request,response,FOODIE_SHOPCRAT,"",true);
+        //整合redis后，完善购物车中的已结算商品，并且同步到前端的cookie
+        shopcartBoList.removeAll(orderVo.getToBeRemovedShopcartList());
+        //覆盖原先的redis中的购物车
+        redisOperator.set(FOODIE_SHOPCRAT + ":" +submitOrderBo.getUserId(),JsonUtils.objectToJson(shopcartBoList));
+        CookieUtils.setCookie(request,response,FOODIE_SHOPCRAT,JsonUtils.objectToJson(shopcartBoList),true);
         //3.向支付中心发送当前订单，用于保存支付中心的订单数据
         MerchantOrdersVo merchantOrdersVo = orderVo.getMerchantOrdersVo();
         merchantOrdersVo.setReturnUrl(PAYRETURNURL);
