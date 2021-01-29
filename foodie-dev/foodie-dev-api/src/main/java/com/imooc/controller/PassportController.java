@@ -164,11 +164,8 @@ public class PassportController  extends  BaseController{
             return IMOOCJSONResult.errorMsg("用户名或密码不能为空");
         }
 
-
         //1.实现登录
-        Users userResult = userService.queryUserForLogin(username, MD5Utils.getMD5Str(password))
-                ;
-
+        Users userResult = userService.queryUserForLogin(username, MD5Utils.getMD5Str(password));
 
         if (userResult == null) {
             return IMOOCJSONResult.errorMsg("用户名和密码不一致");
