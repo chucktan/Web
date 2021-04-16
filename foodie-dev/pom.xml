@@ -136,6 +136,18 @@
             <version>1.7.21</version>
         </dependency>
 
+        <!--引入spring-session 依赖 -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <!--引入spring 安全框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--引入redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -149,6 +161,13 @@
 <!--            <scope>provided</scope>-->
 <!--        </dependency>-->
 
+
+        <!--引入布隆过滤器 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.1-jre</version>
+        </dependency>
     </dependencies>
 
 

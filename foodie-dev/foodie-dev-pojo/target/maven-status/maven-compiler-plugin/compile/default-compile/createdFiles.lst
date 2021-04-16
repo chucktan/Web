@@ -24,6 +24,7 @@ com\imooc\pojo\UserAddress.class
 com\imooc\pojo\ItemsImg.class
 com\imooc\pojo\Category.class
 com\imooc\pojo\vo\SearchItemsVo.class
+com\imooc\pojo\vo\UsersVo.class
 com\imooc\pojo\vo\SimpleItemVo.class
 com\imooc\pojo\vo\CommentLevelCountsVo.class
 com\imooc\pojo\bo\center\CenterUserBo.class

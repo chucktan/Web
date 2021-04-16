@@ -3,6 +3,7 @@ package com.imooc.controller;
 import com.imooc.pojo.Users;
 import com.imooc.pojo.bo.ShopcartBo;
 import com.imooc.pojo.bo.UserBo;
+import com.imooc.pojo.vo.UsersVo;
 import com.imooc.service.UserService;
 import com.imooc.utils.IMOOCJSONResult;
 import com.imooc.utils.MD5Utils;
@@ -73,14 +74,18 @@ public class PassportController  extends  BaseController{
         }
         //4.实现注册
         Users userResult = userService.createUser(userBo);
-        userResult = setNullProperty(userResult);
-        CookieUtils.setCookie(request,response,"user",JsonUtils.objectToJson(userResult),true);
+//        userResult = setNullProperty(userResult);
 
-        // TODO 生成用户token，存入redis会话
+        UsersVo usersVo = convertUsersVo(userResult);
+
+        CookieUtils.setCookie(request,response,"user",JsonUtils.objectToJson(usersVo),true);
+
         //  同步购物车数据
         synchShopcartData(userResult.getId(),request,response);
         return IMOOCJSONResult.ok(userResult);
     }
+
+
 
     /**
      * 注册登录成功后，同步redis和cookie中的购物车数据
@@ -171,8 +176,11 @@ public class PassportController  extends  BaseController{
             return IMOOCJSONResult.errorMsg("用户名和密码不一致");
         }
 
-        userResult = setNullProperty(userResult);
-        CookieUtils.setCookie(request,response,"user",JsonUtils.objectToJson(userResult),true);
+//        userResult = setNullProperty(userResult);
+
+        UsersVo usersVo = convertUsersVo(userResult);
+
+        CookieUtils.setCookie(request,response,"user",JsonUtils.objectToJson(usersVo),true);
         return IMOOCJSONResult.ok(userResult);
     }
 
@@ -185,7 +193,8 @@ public class PassportController  extends  BaseController{
 
         // 用户退出登录，需要清空购物车
         CookieUtils.deleteCookie(request,response,FOODIE_SHOPCRAT + ":" +userId);
-        //TODO 分布式会话中需要清除用户数据
+        // 分布式会话中需要清除用户数据
+        redisOperator.del(REDIS_USER_TOKEN+":"+userId);
 
         return  IMOOCJSONResult.ok();
     }
